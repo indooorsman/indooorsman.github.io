@@ -1,0 +1,5 @@
+h1 indooorsman
+ol
+  each post, key in public.posts._data
+    li
+      a(href='/posts/#{key}')= post.title

@@ -1,0 +1,5 @@
+{
+  "avoid-history-back-cache": {
+    "title": "避免history.back返回的页面中http get请求的缓存"
+  }
+}
