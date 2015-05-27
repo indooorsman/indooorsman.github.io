@@ -4,9 +4,11 @@
 
 所以只好曲线救国了: 
 
-```
+<pre>
+<code class="javascript">
     // 首页代码中获取购物车数量的代码:
     $.get('/cart/count?t=' + Date.now(), function() {
         // 每次请求都加个时间戳吧...
     });
-```
+</code>
+</pre>
