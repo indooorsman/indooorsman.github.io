@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+harp compile . ../
+cd ..
+git ci -am "新的文章"
+git push
