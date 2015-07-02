@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="/main.css"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></head><body><div id="container" class="markdown-body"><h1>避免history.back返回的页面中http get请求的缓存</h1><p>项目中遇到一个问题, 从首页进入购物车之后, 修改购物车中的商品数量, 再通过浏览器的返回按钮回到首页后, 首页的购物车数量不改变, 原因就是通过返回按钮返回的页面中的http get请求貌似会强制从缓存中取, 就算在http headers里设置no-cache也不管用.</p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/main.css"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></head><body><div id="container" class="markdown-body"><h1>避免history.back返回的页面中http get请求的缓存</h1><p>项目中遇到一个问题, 从首页进入购物车之后, 修改购物车中的商品数量, 再通过浏览器的返回按钮回到首页后, 首页的购物车数量不改变, 原因就是通过返回按钮返回的页面中的http get请求貌似会强制从缓存中取, 就算在http headers里设置no-cache也不管用.</p>
 <p>所以只好曲线救国了: </p>
 <pre>
 <code class="javascript">

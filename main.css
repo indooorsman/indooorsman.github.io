@@ -1,1 +1,1 @@
-@import "themes/github/github.css";@import "themes/github/hljs.css";#container{width:600px;margin:50px auto}
+@import "themes/github/github.css";@import "themes/github/hljs.css";#container{max-width:600px;margin:50px auto}
