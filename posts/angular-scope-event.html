@@ -1,4 +1,11 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/main.css"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script></head><body><div id="container" class="markdown-body"><h1>AngularJs controller之间的通信</h1><p>controller之前可以通过事件通信，最近的项目中是通过$rootScope绑定和监听事件，如：</p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="/main.css"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?2bdbd2417ecf82c495cfefb39957b9ce";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head><body><div id="container" class="markdown-body"><h1>AngularJs controller之间的通信</h1><p>controller之前可以通过事件通信，最近的项目中是通过$rootScope绑定和监听事件，如：</p>
 <pre>
 <code class="javascript">
 // controller A:
@@ -26,4 +33,4 @@ $rootScope.$broadcast('eventC', eventData)
 $scope.$on('eventC', function() {...});
 ...
 </code>
-</pre></div></body></html>
+</pre></div><footer><p class="copyright">&copy;&nbsp;<a href="http://csser.me">csser.me</a></p></footer></body></html>

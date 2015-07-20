@@ -7,6 +7,18 @@ html
     script(src="/themes/highlight/highlight.pack.js" type="text/javascript")
     script(type="text/javascript").
       hljs.initHighlightingOnLoad();
+    script.
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?2bdbd2417ecf82c495cfefb39957b9ce";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+
   body
     #container.markdown-body
       != yield
+    footer
+      p.copyright &copy;&nbsp;
+        a(href='http://csser.me') csser.me
