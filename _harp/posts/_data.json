@@ -1,6 +1,8 @@
 {
-  "echo回声下载工具": {
-    "title": "echo回声下载工具"
+  "echo-free-download": {
+    "title": "echo回声下载工具",
+    "description": "echo回声免费下载工具",
+    "keywords": "echo,echo回声,免费,下载,免费下载"
   },
   "angular-scope-event": {
     "title": "angularjs controller之间的通信"
