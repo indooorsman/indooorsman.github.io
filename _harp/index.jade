@@ -1,5 +1,7 @@
+
 h1 indooorsman
 ul
   each post, key in public.posts._data
     li
+      small.post-date= post.date
       a(href='/posts/#{key}')= post.title

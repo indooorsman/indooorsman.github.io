@@ -38,13 +38,15 @@ a {
 @import "themes/github/github.css";
 @import "themes/github/hljs.css";
 
+@maxw: 800px;
+
 #container {
-  max-width: 600px;
+  max-width: @maxw;
   margin: 50px auto;
 }
 
 footer {
-  max-width: 600px;
+  max-width: @maxw;
   margin: 0 auto 50px;
   .copyright {
     color: #888;
@@ -55,5 +57,31 @@ footer {
       text-decoration: underline;
       color: #4183c4 !important;
     }
+  }
+}
+
+li small {
+  color: #888;
+  float: right;
+}
+
+h1 sub {
+  display: block;
+  font-size: 14px;
+  color: #888;
+  font-weight: normal;
+  margin-top: 5px;
+}
+
+.nav-breads {
+  margin-bottom: 5px;
+  a, span {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .split {
+    color: #888;
+    margin: 0 5px;
   }
 }
