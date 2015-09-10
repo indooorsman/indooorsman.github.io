@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 cd ..
-harp compile . ../
+harp compile . ./www/
+rm -rf ./www/.idea ./www/bin
+cp -a ./www/* ../
+rm -rf ./www/*
 cd ..
-git add .
-git ci -m "新的文章"
-git push
+git status
+#git add .
+#git commit -m "新的文章"
+#git push
