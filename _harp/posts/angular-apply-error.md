@@ -1,4 +1,4 @@
-<h1>AngularJs "$apply in progress"错误的一种情况<sub>2015-9-10</sub></h1>
+<h1>AngularJs "$apply in progress"错误的一种情况<sub>2015-09-10</sub></h1>
 
     angular.module('testApp',[])
       .controller('testCtrl', ['$scope', function($scope) {

@@ -3,20 +3,20 @@
     "title": "AngularJs \"$apply in progress\"错误的一种情况",
     "description": "AngularJs \"$apply in progress\"错误的一种情况",
     "keywords": "angularjs,angular,js,error,inprog,$apply,$digest",
-    "date": "2015-9-10"
+    "date": "2015-09-10"
   },
   "echo-free-download": {
     "title": "echo回声下载工具",
     "description": "echo回声免费下载工具",
     "keywords": "echo,echo回声,免费,下载,免费下载",
-    "date": "2015-7-20"
+    "date": "2015-07-20"
   },
   "angular-scope-event": {
     "title": "angularjs controller之间的通信",
-    "date": "2015-7-2"
+    "date": "2015-07-02"
   },
   "avoid-history-back-cache": {
     "title": "避免history.back返回的页面中http get请求的缓存",
-    "date": "2015-6-25"
+    "date": "2015-06-25"
   }
 }
