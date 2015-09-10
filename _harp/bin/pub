@@ -7,7 +7,7 @@ rm -rf ./www/*
 cd ..
 git status
 read -p 'sure to commit and push? (y/n) ' SURE
-if [ "$SURE"="y" ]; then
+if [ $SURE=y ]; then
   git add .
   git commit -m "新的文章"
   git push
