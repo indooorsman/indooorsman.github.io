@@ -5,6 +5,10 @@ var path = require('path');
 
 program.option('-i, --id [id]', 'id of the blog to remove').parse(process.argv);
 
+if (!program.id) {
+  program.help();
+}
+
 var deleted = null;
 
 for (var k in _data) {

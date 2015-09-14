@@ -13,6 +13,10 @@
 ## 查看文章列表
     
     npm run list
+
+## 删除一篇文章
+    
+    npm run rm
     
 ## 发布到github pages
 
