@@ -1,6 +1,6 @@
 # 静态博客
 
-我的静态博客，采用[harp](http://harpjs.com/)生成
+我的博客 [blog.csser.me](http://blog.csser.me)，纯静态，采用[harp](http://harpjs.com/)生成
 
 ## 本地测试
 
