@@ -20,7 +20,11 @@
         var path = api + 'comments/' + id;
         console.log(path);
         self.dataRef = new Wilddog(path);
-        self.bind();
+        self.dataRef.authAnonymously(function (e, d) {
+          if (!e && d.token) {
+            self.bind();
+          }
+        });
       };
       script.src = wdscript;
       document.head.appendChild(script);
@@ -39,12 +43,12 @@
         var li = document.createElement('li');
         li.innerHTML = '<span class="rl-cmts-user-name">' + cmt.username + ' : </span>' + cmt.content + ' <span class="rl-cmts-timestamp">' + (new Date(cmt.time)).toLocaleString() + '</span>'
         self.list.appendChild(li);
-        setTimeout(function(){
+        setTimeout(function () {
           li.classList.add('shown');
         }, 160);
       });
     },
-    setStyle: function() {
+    setStyle: function () {
       var style = '.rl-cmts-list {' +
           'font-size:15px;}' +
           '.rl-cmts-list li {' +
