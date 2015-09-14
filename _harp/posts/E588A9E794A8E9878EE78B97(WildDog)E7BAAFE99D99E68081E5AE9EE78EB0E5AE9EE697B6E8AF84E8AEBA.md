@@ -2,7 +2,7 @@
 
 [野狗(WildDog)](https://www.wilddog.com/)是一个类似facebook的[Parse](https://www.parse.com)的服务，目前只有免费套餐，相比Parse来说更偏向于实时应用，但是不能存储文件，没有`cloud code`等，不过对国内用户来说速度要快很多。。。
 
-野狗的文档比较全面也比较清晰，集成起来很简单，目前的使用情况来看也比较稳定。由于太简单了，所以有兴趣的同学直接看代码吧。。。：
+野狗的文档比较全面也比较清晰，集成起来很简单，目前的使用情况来看也比较稳定。由于太简单了，所以有兴趣的同学直接看代码吧。。。唯一可以说说的一点就是如何关联当前文章和对应的评论，我采用的方案是把当前页面的host+pathname做SHA1(不是为了加密，只是为了缩短。。。)，作为存储的key，具体看代码吧：
 
 [https://github.com/indooorsman/indooorsman.github.io/blob/master/_harp/assets/js/rl-comments.js](https://github.com/indooorsman/indooorsman.github.io/blob/master/_harp/assets/js/rl-comments.js)
 
