@@ -5,8 +5,9 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title= title
     meta(name="description" content="#{description}")
-    meta(name='keywords', content="#{keywords}")
+    meta(name='keywords' content="#{keywords}")
     link(rel="stylesheet" href="/main.css")
+    link(rel="shortcut icon" type="image/png" href="/48.png")
     script(src="/themes/highlight/highlight.pack.js" type="text/javascript")
     script(type="text/javascript").
       hljs.initHighlightingOnLoad();
@@ -27,6 +28,19 @@ html
         a(href='http://blog.csser.me') 博客
         span.split /
       != yield
+      #comments
+        h4 实时评论
+
     footer
       p.copyright indooorsman &copy;&nbsp;
         a(href='http://csser.me') csser.me
+
+    script(src='/assets/js/CryptoJS.js')
+    script(src='/assets/js/rl-comments.js')
+    script.
+      (function () {
+        var id = CryptoJS.SHA1(location.host + location.pathname.replace(/\/$/,''), 'rlcmt');
+        var container = document.getElementById('comments');
+        RLComments.init(id, container);
+      })();
+
