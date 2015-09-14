@@ -1,4 +1,14 @@
 (function () {
+
+  /**
+   *  Usage:
+   *  (function () {
+   *     var id = CryptoJS.SHA1(location.host + location.pathname.replace(/\/$/,''), 'rlcmt');
+   *     var container = document.getElementById('comments');
+   *     RLComments.init(id, container);
+   *   })();
+   */
+
   var wdscript = 'https://cdn.wilddog.com/js/client/current/wilddog.js';
   var api = 'https://realtime-comments.wilddogio.com/';
 
