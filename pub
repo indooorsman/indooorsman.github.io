@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+harp compile ./_harp ./_harp/www/
+rm -rf ./_harp/www/.idea ./_harp/www/bin
+cp -a ./_harp/www/* ./
+rm -rf ./_harp/www/*
+git status
+read -p '    Sure to commit and push? (y/n) ' SURE
+if [ "$SURE" = y ]; then
+  git add .
+  read -p '    Commit message: ' MSG
+  git commit -m "$MSG"
+  git push
+fi
