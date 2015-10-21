@@ -30,15 +30,27 @@ html
         span.split /
       != yield
       #comments
-        h4 实时留言
+        h4 留言
+        div.ds-thread(data-thread-key="blog_home"
+        data-title="#{title}"
+        data-url="#{host}")
+        script.
+          var duoshuoQuery = {short_name: 'csser'};
+          (function(){
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            document.head.appendChild(ds);
+          })();
 
     footer
       p.copyright indooorsman &copy;&nbsp;
         a(href='http://csser.me') csser.me
 
-    script(src='/assets/js/CryptoJS.js')
-    script(src='/assets/js/rl-comments.js')
-    script.
+    //-script(src='/assets/js/CryptoJS.js')
+    //-script(src='/assets/js/rl-comments.js')
+    //-script.
       (function () {
         var id = CryptoJS.SHA1(location.host + location.pathname.replace(/\/$/,''), 'rlcmt');
         var container = document.getElementById('comments');

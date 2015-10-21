@@ -126,6 +126,7 @@
       box.className = 'rl-cmts-box';
 
       box.innerHTML = '<p><input placeholder="昵称" type="text" id="rlCmtsInputUsername"/></p>' +
+          '<p><input placeholder="邮箱" type="email" id="rlCmtsInputEmail"/></p>' +
           '<p><textarea placeholder="评论..." id="rlCmtsInputContent"></textarea></p>' +
           '<p><button id="rlCmtsSubmit">提交</button></p>';
 

@@ -45,15 +45,27 @@ html
         window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 
       #comments
-        h4 实时评论
+        h4 评论
+        div.ds-thread(data-thread-key="#{date}_#{id}"
+        data-title="#{title}"
+        data-url="#{host}#{postsPath}/#{current.source}")
+        script.
+          var duoshuoQuery = {short_name: 'csser'};
+          (function(){
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            document.head.appendChild(ds);
+          })();
 
     footer
       p.copyright indooorsman &copy;&nbsp;
         a(href='http://csser.me') csser.me
 
-    script(src='/assets/js/CryptoJS.js')
-    script(src='/assets/js/rl-comments.js')
-    script.
+    //-script(src='/assets/js/CryptoJS.js')
+    //-script(src='/assets/js/rl-comments.js')
+    //-script.
       (function () {
         var id = CryptoJS.SHA1(location.host + location.pathname.replace(/\/$/,''), 'rlcmt');
         var container = document.getElementById('comments');
