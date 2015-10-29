@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>一行代码实现数组去重（ES6）</title><meta name="description" content="indooorsman's blog - csser.me"><meta name="keywords" content="数组,去重,es6,数组去重"><link rel="stylesheet" href="/main.css"><link rel="shortcut icon" type="image/png" href="/48.png"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.configure({languages: ['javascript']});
+hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?2bdbd2417ecf82c495cfefb39957b9ce";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head><body><div id="container" class="markdown-body"><div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div><h1>一行代码实现数组去重（ES6）<sub>2015-10-29</sub></h1>
+
+<ol>
+<li><p>ES6中新增了<code>Set</code>数据结构，类似于数组，但是 <strong>它的成员都是唯一的</strong> ，其构造函数可以接受一个数组作为参数，如：</p>
+<pre><code> let array = [1, 1, 1, 1, 2, 3, 4, 4, 5, 3];
+ let set = new Set(array);
+ console.log(set);
+ // =&gt; Set {1, 2, 3, 4, 5}
+</code></pre></li>
+<li><p>ES6中<code>Array</code>新增了一个静态方法<code>Array.from</code>，可以把类似数组的对象转换为数组，如通过<code>querySelectAll</code>方法得到<code>HTML DOM Node List</code>，以及ES6中新增的<code>Set</code>和<code>Map</code>等可遍历对象，如：</p>
+<pre><code> let set = new Set();
+ set.add(1).add(2).add(3);
+ let array = Array.from(set);
+ console.log(array);
+ // =&gt; [1, 2, 3]
+</code></pre></li>
+</ol>
+<p>于是，现在我们可以用一行代码实现数组去重了：</p>
+<pre><code>let array = Array.from(new Set([1, 1, 1, 2, 3, 2, 4]));
+console.log(array);
+// =&gt; [1, 2, 3, 4]
+</code></pre><p>附：ES5实现数组去重</p>
+<pre><code>var array = [1, &#39;1&#39;, 1, 2, 3, 2, 4];
+var tmpObj = {};
+var result = [];
+array.forEach(function(a) {
+  var key = (typeof a) + a;
+  if (!tmpObj[key]) {
+    tmpObj[key] = true;
+    result.push(a);
+  }
+});
+console.log(result);
+// =&gt; [1, &quot;1&quot;, 2, 3, 4]
+</code></pre><h4>分享</h4><div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script><div id="comments"><h4>评论</h4><div data-thread-key="2015-10-29_10" data-title="一行代码实现数组去重（ES6）" data-url="http://blog.csser.me/posts/E4B880E8A18CE4BBA3E7A081E5AE9EE78EB0E695B0E7BB84E58EBBE9878DEFBC88ES6EFBC89" class="ds-thread"></div><script>var duoshuoQuery = {short_name: 'csser'};
+(function(){
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = 'http://static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  document.head.appendChild(ds);
+})();
+</script></div></div><footer><p class="copyright">indooorsman &copy;&nbsp;<a href="http://csser.me">csser.me</a></p></footer></body></html>

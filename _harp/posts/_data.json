@@ -52,5 +52,11 @@
 		"date": "2015-09-17",
 		"keywords": "angular,material,wilddog,qiniu,野狗,七牛",
 		"id": 9
+	},
+	"E4B880E8A18CE4BBA3E7A081E5AE9EE78EB0E695B0E7BB84E58EBBE9878DEFBC88ES6EFBC89": {
+		"title": "一行代码实现数组去重（ES6）",
+		"date": "2015-10-29",
+		"keywords": "数组,去重,es6,数组去重",
+		"id": 10
 	}
 }
