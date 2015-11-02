@@ -1,0 +1,22 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>indooorsman</title><meta name="description" content="indooorsman's blog - csser.me"><meta name="keywords" content="indooorsman,blog,csser.me,angular,angularjs,nodejs,node,前端"><link rel="stylesheet" href="/main.css"><link rel="shortcut icon" type="image/png" href="/48.png"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.configure({languages: ['javascript']});
+hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?2bdbd2417ecf82c495cfefb39957b9ce";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head><body><div id="container" class="markdown-body"><div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div><h1>Nexus5刷Android6.0遇到的问题<sub>2015-11-02</sub></h1>
+
+<p>在Android 6.0正式版发布之前我已经刷了6.0的第三个预览版，当时是清除数据刷的，没有遇到问题，但是在预览版的基础上，保留用户数据刷正式版（下载官方工厂镜像通过fastboot刷的）却遇到了一个很严重的问题：之前安装的非系统应用绝大多数无法打开，打开就停止运行，尝试卸载应用后重新安装就可以了，但这样之前的应用数据就丢了。。。</p>
+<p>就这样卸载重装几个之后觉得不是事儿啊，然后观察几个还能打开的应用，比如root explorer，发现虽然可以正常运行，却无法访问sdcard，于是突然想到android 6.0新增的权限管理，到设置里一看果然之前在预览版中安装的应用的所有权限都是禁用状态，尝试手动开启发现根本无法开启。。。会自动变成禁用状态，what the f**k 。。。。</p>
+<p>不过这样就确定了不是应用数据的问题，所以重新下载了有问题的应用，在不卸载的情况下直接覆盖安装，就没有问题了，数据也保留了，也不崩溃了</p><h4>分享</h4><div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script><div id="comments"><h4>评论</h4><div data-thread-key="undefined_undefined" data-title="indooorsman" data-url="http://blog.csser.me/posts/Nexus5E588B7Android6" class="ds-thread"></div><script>var duoshuoQuery = {short_name: 'csser'};
+(function(){
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = 'http://static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  document.head.appendChild(ds);
+})();
+</script></div></div><footer><p class="copyright">indooorsman &copy;&nbsp;<a href="http://csser.me">csser.me</a></p></footer></body></html>
