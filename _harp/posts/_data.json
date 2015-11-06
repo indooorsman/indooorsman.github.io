@@ -64,5 +64,11 @@
 		"date": "2015-11-02",
 		"keywords": "Android 6.0,Android M,Nexus 5,闪退,停止运行",
 		"id": 11
+	},
+	"AndroidE4BDBFE794A8shadowsocksE58886E5BA94E794A8E4BBA3E79086E697B6Google-PlayE4B88DE883BDE4B88BE8BDBDE79A84E997AEE9A298": {
+		"title": "Android使用shadowsocks分应用代理时Google Play不能下载的问题",
+		"date": "2015-11-06",
+		"keywords": "shadowsocks,android,google play,下载",
+		"id": 12
 	}
 }
