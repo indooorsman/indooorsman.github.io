@@ -70,5 +70,11 @@
 		"date": "2015-11-06",
 		"keywords": "shadowsocks,android,google play,下载",
 		"id": 12
+	},
+	"E4BFAEE694B9hostsE4BDBFMac-AppstoreE79A84E8AFB7E6B182E8A7A3E69E90E588B0E6BEB3E997A8E79A84E69C8DE58AA1E599A8": {
+		"title": "修改hosts使Mac Appstore的请求解析到澳门的服务器",
+		"date": "2015-11-25",
+		"keywords": "appstore,加速,hosts,澳门",
+		"id": 13
 	}
 }
