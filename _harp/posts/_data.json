@@ -82,5 +82,11 @@
 		"date": "2016-01-08",
 		"keywords": "数据线,USB,充电,快速充电",
 		"id": 14
+	},
+	"E58EBBE68E89E58E9FE7949FE5AE89E58D935.x-6.xE9809AE79FA5E6A08FE79A84E5B08FE58FB9E58FB7": {
+		"title": "去掉原生安卓5.x 6.x通知栏的小叹号",
+		"date": "2016-02-01",
+		"keywords": "android,android L,android M,android 5.0,android 6.0,WIFI,叹号",
+		"id": 15
 	}
 }
