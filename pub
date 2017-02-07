@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-harp compile ./_harp ./_harp/www/
+charp compile ./_harp ./_harp/www/
 rm -rf ./_harp/www/.idea ./_harp/www/bin
 cp -a ./_harp/www/* ./
 rm -rf ./_harp/www/*
