@@ -34,10 +34,10 @@ charp.compile(src, tempWWW, (e, config) => {
     input: process.stdin,
     output: process.stdout
   });
-  rl.question('    Sure to commit and push? (y/n) ', answer => {
+  rl.question('\n    Sure to commit and push? (y/n) ', answer => {
     if(answer.trim().toLowerCase() === 'y') {
       shell.exec(`git add ${root}`);
-      rl.question('    Commit message: ', msg => {
+      rl.question('\n    Commit message: ', msg => {
         if (msg.trim() == '') {
           msg = 'no message';
         }
