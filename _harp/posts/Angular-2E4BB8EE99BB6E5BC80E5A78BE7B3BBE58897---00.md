@@ -38,7 +38,7 @@
 
 ### 初始化
 
-- 打开终端：
+- 打开终端(Windows用户建议使用[git-bash](https://git-scm.com/downloads))：
 
 ```bash
 mkdir angular-twitter
@@ -67,15 +67,215 @@ npm install awesome-typescript-loader --save-dev
 - 目录结构：
 
 ```text
-anglar-twitter/
+anuglar-twitter/
 ├── src/ 
     ├── app/
-    ├── main.ts 
     ├── index.html
+    ├── tsconfig.json
 ├── webpack.config.js
-├── tsconfig.json     
+├── package.json     
+```
+其中：`src`目录存放我们的ts及模板等源文件，`./webpack.config.js`是webpack的配置文件
+`./package.json`是最开始执行`npm init`之后生成的
+`./src/tsconfig.json`是typescript的配置文件
+`./src/index.html`是主页面
+`./src/app`则是我们app的具体代码喽
+
+- Hello world!
+
+接下来我们先实现一个hello world，首先创建app的入口模块及根组件(假设你已经阅读了Angular官方的快速起步和开发指南，没有的话请移步<https://angular.cn>)，在`./src/app/`目录下创建如下文件：
+
+|文件名|说明|
+|---|---|
+|app.module.ts|入口模块|
+|app.component.ts|根组件|
+|app.template.html|根组件模板|
+|app.styles.css|根组件样式|
+
+```typescript
+//app.module.ts
+
+import {NgModule} from "@angular/core";
+import {AngularTwitterAppComponent} from "./app.component";
+import {BrowserModule} from "@angular/platform-browser";
+@NgModule({
+  imports: [
+    BrowserModule
+  ],
+  declarations: [
+    AngularTwitterAppComponent
+  ],
+  providers: [],
+  bootstrap: [AngularTwitterAppComponent]
+})
+export class AppModule {
+
+}
+```
+```typescript
+//app.component.ts
+
+import {Component} from "@angular/core";
+@Component({
+  selector: 'angular-twitter-app',
+  templateUrl: './app.template.html',
+  styleUrls: ['./app.styles.css']
+})
+export class AngularTwitterAppComponent {
+
+}
+```
+```html
+<!-- app.template.html -->
+<h1>Hello World !</h1>
+```
+```css
+/* app.styles.css */
+h1 {
+  font-weight: normal;
+}
 ```
 
-(TODO: 还没写完...)
+然后在`./src`创建app的启动文件`main.ts`
+```typescript
+import 'core-js'; // es6+es7 polyfills
+import 'zone.js/dist/zone.js'; // Angular所依赖的zone.js，必须在core-js之后加载
 
+import {AppModule} from "./app/app.module";
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+platformBrowserDynamic().bootstrapModule(AppModule);
+```
 
+修改`./src/tsconfig.json`
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es6",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ]
+  }
+}
+```
+`tsconfig.json`中各个字段的说明：
+
+|字段名|值|说明|
+|---|---|------|
+|target|es5|编译目标，将ts文件编译成符合es5规范的js代码|
+|module|es6|编译目标采用es6的模块管理方式，目的是能够利用webpack和es6模块导入的特性来做tree-shaking|
+|experimentalDecorators|true|使用实验性的装饰器，这个是必须的设置，因为Angular的源码中使用了它|
+|moduleResolution|node|由于我们使用了node的包管理工具npm来下载依赖，所以这里也是必须的设置，<br>否则在ts中导入node_modules目录下的模块时，ts编译器会找不到它|
+|lib|["dom","es6"]|同样是必须的设置，否则用到es6的地方编译会报错|
+|typeRoots|["node_modules/@types"]|参考<br><https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types>|
+|types|["node"]|为`require`等方法提供类型支持，需要先安装`@types/node`<br>(在项目根目录下执行`npm install @types/node`)
+
+修改`webpack.config.js`：
+```js
+module.exports = {
+  entry: {
+    'app': './src/main.ts' //入口文件
+  },
+
+  output: {
+    path: './src', //生成打包文件的目录
+    filename: '[name].bundle.js' //打包文件的名字，本例中将是`app.bundle.js`
+  },
+
+  resolve: {
+    extensions: ['.js', '.ts'] //这样配置在import的时候，就可以省略.js和.ts的后缀了
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader', //编译ts的loader
+            options: {
+              configFileName: './src/tsconfig.json' //配置tsconfig.json的路径
+            }
+          },
+          'angular2-template-loader' //这个loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，并添加require，参考<https://github.com/TheLarkInn/angular2-template-loader>
+        ]
+      },
+      {
+        test: /\.(css|html|htm)$/, 
+        use: 'raw-loader' //对于css、html、htm直接取得起文本内容，在之后的文章里会分别替换成less和pug
+      }
+    ]
+  }
+};
+```
+
+修改`./src/index.html`：
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular Twitter Demo</title>
+</head>
+<body>
+  <angular-twitter-app>Loading...</angular-twitter-app>
+  <!--注意下面引用的是webpack打包生成的文件-->
+  <script type="text/javascript" src="app.bundle.js"></script>
+</body>
+</html>
+```
+
+最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器
+
+修改`./package.json`:
+```json
+{
+  "name": "angular-twitter",
+  ...
+  "scripts": {
+    "webpack": "webpack --config ./webpack.config.js --bail --progress",
+    "server": "static-server ./src",
+    "start": "npm run webpack && npm run server"
+  },
+  ...
+}
+```
+其中`scripts.webpack`中的命令参数说明：
+
+|参数|说明|
+|---|---|
+|--config|指定配置文件路径|
+|--bail|当打包时遇到第一个错误就立刻中断打包|
+|--progress|显示打包进度|
+
+更多的参数说明请参考<https://webpack.js.org/api/cli/>
+
+`scripts.server`中用到了一个新的node模块`static-server`，所以我们需要在项目根目录下执行`npm install static-server --save-dev`
+
+好啦！现在我们可以在项目根目录下执行`npm start`来试试看了！
+
+执行`npm start`之后若看到如下的提示，就说明已经打包成功并且启动了静态服务：
+```bash
+* Static server successfully started.
+* Serving files at: http://localhost:9080
+* Press Ctrl+C to shutdown.
+```
+
+现在用浏览器打开`http://localhost:9080`：
+
+![screenshot1](../assets/screenshot1.png)
+
+序章到此就结束了，下一章将引入`pug`和`less`，以及通过`webpack`的`file-loader`来处理模板和样式中对图片等静态资源的引用。
+
+示例源码：<https://github.com/indooorsman/angular-twitter>

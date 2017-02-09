@@ -52,7 +52,7 @@
 <h2>创建项目</h2><h3>环境</h3><p>我们采用<code>npm</code>来管理依赖，<code>NodeJS</code>运行环境当然是必不可少的，所以第一步就是安装<code>NodeJS</code> <a href="https://nodejs.org/">https://nodejs.org/</a></p>
 <p>另外介于国内的网络环境，推荐使用淘宝的npm镜像：<a href="https://npm.taobao.org/">https://npm.taobao.org/</a>，请按照网站上的说明进行配置</p>
 <h3>初始化</h3><ul>
-<li>打开终端：</li>
+<li>打开终端(Windows用户建议使用<a href="https://git-scm.com/downloads">git-bash</a>)：</li>
 </ul>
 <pre><code class="language-bash">mkdir angular-twitter
 cd angular-twitter
@@ -77,15 +77,264 @@ npm install awesome-typescript-loader --save-dev
 <ul>
 <li>目录结构：</li>
 </ul>
-<pre><code class="language-text">anglar-twitter/
+<pre><code class="language-text">anuglar-twitter/
 ├── src/ 
     ├── app/
-    ├── main.ts 
     ├── index.html
+    ├── tsconfig.json
 ├── webpack.config.js
-├── tsconfig.json
+├── package.json
 </code></pre>
-<p>(TODO: 还没写完...)</p>
+<p>其中：<code>src</code>目录存放我们的ts及模板等源文件，<code>./webpack.config.js</code>是webpack的配置文件
+<code>./package.json</code>是最开始执行<code>npm init</code>之后生成的
+<code>./src/tsconfig.json</code>是typescript的配置文件
+<code>./src/index.html</code>是主页面
+<code>./src/app</code>则是我们app的具体代码喽</p>
+<ul>
+<li>Hello world!</li>
+</ul>
+<p>接下来我们先实现一个hello world，首先创建app的入口模块及根组件(假设你已经阅读了Angular官方的快速起步和开发指南，没有的话请移步<a href="https://angular.cn">https://angular.cn</a>)，在<code>./src/app/</code>目录下创建如下文件：</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.module.ts</td>
+<td>入口模块</td>
+</tr>
+<tr>
+<td>app.component.ts</td>
+<td>根组件</td>
+</tr>
+<tr>
+<td>app.template.html</td>
+<td>根组件模板</td>
+</tr>
+<tr>
+<td>app.styles.css</td>
+<td>根组件样式</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-typescript">//app.module.ts
+
+import {NgModule} from &quot;@angular/core&quot;;
+import {AngularTwitterAppComponent} from &quot;./app.component&quot;;
+import {BrowserModule} from &quot;@angular/platform-browser&quot;;
+@NgModule({
+  imports: [
+    BrowserModule
+  ],
+  declarations: [
+    AngularTwitterAppComponent
+  ],
+  providers: [],
+  bootstrap: [AngularTwitterAppComponent]
+})
+export class AppModule {
+
+}
+</code></pre>
+<pre><code class="language-typescript">//app.component.ts
+
+import {Component} from &quot;@angular/core&quot;;
+@Component({
+  selector: &#39;angular-twitter-app&#39;,
+  templateUrl: &#39;./app.template.html&#39;,
+  styleUrls: [&#39;./app.styles.css&#39;]
+})
+export class AngularTwitterAppComponent {
+
+}
+</code></pre>
+<pre><code class="language-html">&lt;!-- app.template.html --&gt;
+&lt;h1&gt;Hello World !&lt;/h1&gt;
+</code></pre>
+<pre><code class="language-css">/* app.styles.css */
+h1 {
+  font-weight: normal;
+}
+</code></pre>
+<p>然后在<code>./src</code>创建app的启动文件<code>main.ts</code></p>
+<pre><code class="language-typescript">import &#39;core-js&#39;; // es6+es7 polyfills
+import &#39;zone.js/dist/zone.js&#39;; // Angular所依赖的zone.js，必须在core-js之后加载
+
+import {AppModule} from &quot;./app/app.module&quot;;
+import {platformBrowserDynamic} from &quot;@angular/platform-browser-dynamic&quot;;
+platformBrowserDynamic().bootstrapModule(AppModule);
+</code></pre>
+<p>修改<code>./src/tsconfig.json</code></p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;es5&quot;,
+    &quot;module&quot;: &quot;es6&quot;,
+    &quot;experimentalDecorators&quot;: true,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;lib&quot;: [
+      &quot;dom&quot;,
+      &quot;es6&quot;
+    ],
+    &quot;typeRoots&quot;: [
+      &quot;node_modules/@types&quot;
+    ],
+    &quot;types&quot;: [
+      &quot;node&quot;
+    ]
+  }
+}
+</code></pre>
+<p><code>tsconfig.json</code>中各个字段的说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>es5</td>
+<td>编译目标，将ts文件编译成符合es5规范的js代码</td>
+</tr>
+<tr>
+<td>module</td>
+<td>es6</td>
+<td>编译目标采用es6的模块管理方式，目的是能够利用webpack和es6模块导入的特性来做tree-shaking</td>
+</tr>
+<tr>
+<td>experimentalDecorators</td>
+<td>true</td>
+<td>使用实验性的装饰器，这个是必须的设置，因为Angular的源码中使用了它</td>
+</tr>
+<tr>
+<td>moduleResolution</td>
+<td>node</td>
+<td>由于我们使用了node的包管理工具npm来下载依赖，所以这里也是必须的设置，<br>否则在ts中导入node_modules目录下的模块时，ts编译器会找不到它</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>[&quot;dom&quot;,&quot;es6&quot;]</td>
+<td>同样是必须的设置，否则用到es6的地方编译会报错</td>
+</tr>
+<tr>
+<td>typeRoots</td>
+<td>[&quot;node_modules/@types&quot;]</td>
+<td>参考<br><a href="https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types">https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types</a></td>
+</tr>
+<tr>
+<td>types</td>
+<td>[&quot;node&quot;]</td>
+<td>为<code>require</code>等方法提供类型支持，需要先安装<code>@types/node</code><br>(在项目根目录下执行<code>npm install @types/node</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>修改<code>webpack.config.js</code>：</p>
+<pre><code class="language-js">module.exports = {
+  entry: {
+    &#39;app&#39;: &#39;./src/main.ts&#39; //入口文件
+  },
+
+  output: {
+    path: &#39;./src&#39;, //生成打包文件的目录
+    filename: &#39;[name].bundle.js&#39; //打包文件的名字，本例中将是`app.bundle.js`
+  },
+
+  resolve: {
+    extensions: [&#39;.js&#39;, &#39;.ts&#39;] //这样配置在import的时候，就可以省略.js和.ts的后缀了
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: &#39;awesome-typescript-loader&#39;, //编译ts的loader
+            options: {
+              configFileName: &#39;./src/tsconfig.json&#39; //配置tsconfig.json的路径
+            }
+          },
+          &#39;angular2-template-loader&#39; //这个loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，并添加require，参考&lt;https://github.com/TheLarkInn/angular2-template-loader&gt;
+        ]
+      },
+      {
+        test: /\.(css|html|htm)$/, 
+        use: &#39;raw-loader&#39; //对于css、html、htm直接取得起文本内容，在之后的文章里会分别替换成less和pug
+      }
+    ]
+  }
+};
+</code></pre>
+<p>修改<code>./src/index.html</code>：</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;Angular Twitter Demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;angular-twitter-app&gt;Loading...&lt;/angular-twitter-app&gt;
+  &lt;!--注意下面引用的是webpack打包生成的文件--&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;app.bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器</p>
+<p>修改<code>./package.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;angular-twitter&quot;,
+  ...
+  &quot;scripts&quot;: {
+    &quot;webpack&quot;: &quot;webpack --config ./webpack.config.js --bail --progress&quot;,
+    &quot;server&quot;: &quot;static-server ./src&quot;,
+    &quot;start&quot;: &quot;npm run webpack &amp;&amp; npm run server&quot;
+  },
+  ...
+}
+</code></pre>
+<p>其中<code>scripts.webpack</code>中的命令参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--config</td>
+<td>指定配置文件路径</td>
+</tr>
+<tr>
+<td>--bail</td>
+<td>当打包时遇到第一个错误就立刻中断打包</td>
+</tr>
+<tr>
+<td>--progress</td>
+<td>显示打包进度</td>
+</tr>
+</tbody>
+</table>
+<p>更多的参数说明请参考<a href="https://webpack.js.org/api/cli/">https://webpack.js.org/api/cli/</a></p>
+<p><code>scripts.server</code>中用到了一个新的node模块<code>static-server</code>，所以我们需要在项目根目录下执行<code>npm install static-server --save-dev</code></p>
+<p>好啦！现在我们可以在项目根目录下执行<code>npm start</code>来试试看了！</p>
+<p>执行<code>npm start</code>之后若看到如下的提示，就说明已经打包成功并且启动了静态服务：</p>
+<pre><code class="language-bash">* Static server successfully started.
+* Serving files at: http://localhost:9080
+* Press Ctrl+C to shutdown.
+</code></pre>
+<p>现在用浏览器打开<code>http://localhost:9080</code>：</p>
+<p><img src="../assets/screenshot1.png" alt="screenshot1"></p>
+<p>序章到此就结束了，下一章将引入<code>pug</code>和<code>less</code>，以及通过<code>webpack</code>的<code>file-loader</code>来处理模板和样式中对图片等静态资源的引用。</p>
+<p>示例源码：<a href="https://github.com/indooorsman/angular-twitter">https://github.com/indooorsman/angular-twitter</a></p>
       <h4>分享</h4>
       <div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div>
       <script>
