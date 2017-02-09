@@ -92,7 +92,7 @@ anuglar-twitter/
 |app.template.html|根组件模板|
 |app.styles.css|根组件样式|
 
-```typescript
+```js
 //app.module.ts
 
 import {NgModule} from "@angular/core";
