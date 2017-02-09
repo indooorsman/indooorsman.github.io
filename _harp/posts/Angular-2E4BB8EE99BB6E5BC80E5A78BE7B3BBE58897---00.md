@@ -81,7 +81,7 @@ anuglar-twitter/
 `./src/index.html`是主页面
 `./src/app`则是我们app的具体代码喽
 
-- Hello world!
+### Hello world!
 
 接下来我们先实现一个hello world，首先创建app的入口模块及根组件(假设你已经阅读了Angular官方的快速起步和开发指南，没有的话请移步<https://angular.cn>)，在`./src/app/`目录下创建如下文件：
 
