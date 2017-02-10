@@ -10,12 +10,16 @@
 - 路由懒加载
 - 通过`npm script`『一键』创建组件相关目录和文件
 - 模块热替换(hot module replacement)
+- 多国语言支持
+- 动态加载组件
 - AoT编译
 - 服务端渲染
 
 希望对大家能有所帮助
 
-# 序章
+&nbsp;
+
+___序章___
 
 ## 基础知识
 
@@ -214,7 +218,7 @@ module.exports = {
       },
       {
         test: /\.(css|html|htm)$/, 
-        use: 'raw-loader' //对于css、html、htm直接取得起文本内容，在之后的文章里会分别替换成less和pug
+        use: 'raw-loader' //对于css、html、htm直接取得其文本内容，在之后的文章里会分别替换成less和pug
       }
     ]
   }
