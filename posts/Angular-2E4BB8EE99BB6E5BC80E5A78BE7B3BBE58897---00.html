@@ -136,7 +136,7 @@ export class AppModule {
 
 }
 </code></pre>
-<pre><code class="language-typescript">//app.component.ts
+<pre><code class="language-js">//app.component.ts
 
 import {Component} from &quot;@angular/core&quot;;
 @Component({
@@ -157,7 +157,7 @@ h1 {
 }
 </code></pre>
 <p>然后在<code>./src</code>创建app的启动文件<code>main.ts</code></p>
-<pre><code class="language-typescript">import &#39;core-js&#39;; // es6+es7 polyfills
+<pre><code class="language-js">import &#39;core-js&#39;; // es6+es7 polyfills
 import &#39;zone.js/dist/zone.js&#39;; // Angular所依赖的zone.js，必须在core-js之后加载
 
 import {AppModule} from &quot;./app/app.module&quot;;
@@ -257,7 +257,10 @@ platformBrowserDynamic().bootstrapModule(AppModule);
               configFileName: &#39;./src/tsconfig.json&#39; //配置tsconfig.json的路径
             }
           },
-          &#39;angular2-template-loader&#39; //这个loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，并添加require，参考&lt;https://github.com/TheLarkInn/angular2-template-loader&gt;
+          &#39;angular2-template-loader&#39; 
+          // angular2-template-loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，
+          // 并添加require，参考&lt;https://github.com/TheLarkInn/angular2-template-loader&gt;
+          // 当然需要先安装它：在项目根目录下执行`npm install angular2-template-loader --save-dev`
         ]
       },
       {
