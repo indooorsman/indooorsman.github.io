@@ -37,11 +37,15 @@
 <li>路由懒加载</li>
 <li>通过<code>npm script</code>『一键』创建组件相关目录和文件</li>
 <li>模块热替换(hot module replacement)</li>
+<li>多国语言支持</li>
+<li>动态加载组件</li>
 <li>AoT编译</li>
 <li>服务端渲染</li>
 </ul>
 <p>希望对大家能有所帮助</p>
-<h1>序章</h1><h2>基础知识</h2><ul>
+<p>&nbsp;</p>
+<p><strong><em>序章</em></strong></p>
+<h2>基础知识</h2><ul>
 <li>NPM <a href="https://www.npmjs.com">https://www.npmjs.com</a></li>
 <li>ES6 <a href="http://es6.ruanyifeng.com">http://es6.ruanyifeng.com</a></li>
 <li>Webpack <a href="https://webpack.js.org">https://webpack.js.org</a></li>
@@ -265,7 +269,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
       },
       {
         test: /\.(css|html|htm)$/, 
-        use: &#39;raw-loader&#39; //对于css、html、htm直接取得起文本内容，在之后的文章里会分别替换成less和pug
+        use: &#39;raw-loader&#39; //对于css、html、htm直接取得其文本内容，在之后的文章里会分别替换成less和pug
       }
     ]
   }
