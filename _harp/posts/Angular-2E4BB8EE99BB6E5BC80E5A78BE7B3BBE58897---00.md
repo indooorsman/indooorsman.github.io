@@ -112,7 +112,7 @@ export class AppModule {
 
 }
 ```
-```typescript
+```js
 //app.component.ts
 
 import {Component} from "@angular/core";
@@ -137,7 +137,7 @@ h1 {
 ```
 
 然后在`./src`创建app的启动文件`main.ts`
-```typescript
+```js
 import 'core-js'; // es6+es7 polyfills
 import 'zone.js/dist/zone.js'; // Angular所依赖的zone.js，必须在core-js之后加载
 
@@ -206,7 +206,10 @@ module.exports = {
               configFileName: './src/tsconfig.json' //配置tsconfig.json的路径
             }
           },
-          'angular2-template-loader' //这个loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，并添加require，参考<https://github.com/TheLarkInn/angular2-template-loader>
+          'angular2-template-loader' 
+          // angular2-template-loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，
+          // 并添加require，参考<https://github.com/TheLarkInn/angular2-template-loader>
+          // 当然需要先安装它：在项目根目录下执行`npm install angular2-template-loader --save-dev`
         ]
       },
       {
