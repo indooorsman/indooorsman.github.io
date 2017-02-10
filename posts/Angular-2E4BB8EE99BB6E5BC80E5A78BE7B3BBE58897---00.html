@@ -89,11 +89,15 @@ npm install awesome-typescript-loader --save-dev
 ├── webpack.config.js
 ├── package.json
 </code></pre>
-<p>其中：<code>src</code>目录存放我们的ts及模板等源文件，<code>./webpack.config.js</code>是webpack的配置文件
-<code>./package.json</code>是最开始执行<code>npm init</code>之后生成的
-<code>./src/tsconfig.json</code>是typescript的配置文件
-<code>./src/index.html</code>是主页面
-<code>./src/app</code>则是我们app的具体代码喽</p>
+<p>其中：</p>
+<ul>
+<li><code>src</code>目录存放我们的ts及模板等源文件</li>
+<li><code>./webpack.config.js</code>是webpack的配置文件 </li>
+<li><code>./package.json</code>是最开始执行<code>npm init</code>之后生成的 </li>
+<li><code>./src/tsconfig.json</code>是typescript的配置文件</li>
+<li><code>./src/index.html</code>是主页面</li>
+<li><code>./src/app</code>则是我们app的具体代码喽</li>
+</ul>
 <h3>Hello world!</h3><p>接下来我们先实现一个hello world，首先创建app的入口模块及根组件(假设你已经阅读了Angular官方的快速起步和开发指南，没有的话请移步<a href="https://angular.cn">https://angular.cn</a>)，在<code>./src/app/</code>目录下创建如下文件：</p>
 <table>
 <thead>
@@ -231,10 +235,11 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 <tr>
 <td>types</td>
 <td>[&quot;node&quot;]</td>
-<td>为<code>require</code>等方法提供类型支持，需要先安装<code>@types/node</code><br>(在项目根目录下执行<code>npm install @types/node</code>)</td>
+<td>为<code>require</code>等方法提供类型支持，需要先安装<code>@types/node</code><br>(在项目根目录下执行<code>npm install @types/node --save</code>)</td>
 </tr>
 </tbody>
 </table>
+<p>&nbsp;</p>
 <p>修改<code>webpack.config.js</code>：</p>
 <pre><code class="language-js">module.exports = {
   entry: {
@@ -291,7 +296,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器</p>
+<p>最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器（更多关于npm scripts的信息请参考<a href="https://docs.npmjs.com/files/package.json">https://docs.npmjs.com/files/package.json</a>以及<a href="https://docs.npmjs.com/misc/scripts">https://docs.npmjs.com/misc/scripts</a>）</p>
 <p>修改<code>./package.json</code>:</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;angular-twitter&quot;,

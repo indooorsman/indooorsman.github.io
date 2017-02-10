@@ -79,11 +79,13 @@ anuglar-twitter/
 ├── webpack.config.js
 ├── package.json     
 ```
-其中：`src`目录存放我们的ts及模板等源文件，`./webpack.config.js`是webpack的配置文件
-`./package.json`是最开始执行`npm init`之后生成的
-`./src/tsconfig.json`是typescript的配置文件
-`./src/index.html`是主页面
-`./src/app`则是我们app的具体代码喽
+其中：
+- `src`目录存放我们的ts及模板等源文件
+- `./webpack.config.js`是webpack的配置文件 
+- `./package.json`是最开始执行`npm init`之后生成的 
+- `./src/tsconfig.json`是typescript的配置文件
+- `./src/index.html`是主页面
+- `./src/app`则是我们app的具体代码喽
 
 ### Hello world!
 
@@ -181,7 +183,9 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 |moduleResolution|node|由于我们使用了node的包管理工具npm来下载依赖，所以这里也是必须的设置，<br>否则在ts中导入node_modules目录下的模块时，ts编译器会找不到它|
 |lib|["dom","es6"]|同样是必须的设置，否则用到es6的地方编译会报错|
 |typeRoots|["node_modules/@types"]|参考<br><https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types>|
-|types|["node"]|为`require`等方法提供类型支持，需要先安装`@types/node`<br>(在项目根目录下执行`npm install @types/node`)
+|types|["node"]|为`require`等方法提供类型支持，需要先安装`@types/node`<br>(在项目根目录下执行`npm install @types/node --save`)
+
+&nbsp;
 
 修改`webpack.config.js`：
 ```js
@@ -243,7 +247,7 @@ module.exports = {
 </html>
 ```
 
-最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器
+最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器（更多关于npm scripts的信息请参考<https://docs.npmjs.com/files/package.json>以及<https://docs.npmjs.com/misc/scripts>）
 
 修改`./package.json`:
 ```json
