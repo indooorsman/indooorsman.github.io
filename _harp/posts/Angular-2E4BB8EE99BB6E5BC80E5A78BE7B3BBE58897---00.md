@@ -1,4 +1,4 @@
-<h1>Angular 2从零开始系列 - 00<sub>2017-02-06</sub></h1>
+<h1>Angular 2从零开始 - 00.概述&HelloWorld<sub>2017-02-06</sub></h1>
 
 本系列将会从零开始构建一个完整的Angular项目，最终实现一个简易版的twitter，不依赖任何seed或starter，也不使用Angular cli，这样做的目的是让自己对Angular应用开发的每一个环节都有一定的了解
 
@@ -291,4 +291,6 @@ module.exports = {
 
 序章到此就结束了，下一章将引入`pug`和`less`，以及通过`webpack`的`file-loader`来处理模板和样式中对图片等静态资源的引用。
 
-示例源码：<https://github.com/indooorsman/angular-twitter/tree/helloWorld>
+本文示例源码：<https://github.com/indooorsman/angular-twitter/tree/helloWorld>
+
+___EOF___
