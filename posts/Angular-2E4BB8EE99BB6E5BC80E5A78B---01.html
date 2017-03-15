@@ -110,11 +110,10 @@
 <li>删除原来的html和css文件</li>
 <li><p>新建 <code>src/app/app.template.pug</code> 和 <code>src/app/app.styles.less</code></p>
 <p> pug模板中还是一个简单的hello world标题，只不过增加一张图片：</p>
-<pre><code> ```pug
- h1 hello world !
- img(src=&quot;./assets/helloworld.png&quot;)
- ```
-</code></pre><p> 另外我们在 <code>src</code> 目录下新建一个 <code>var.less</code> 来定义一些less的全局变量，如主背景色，主文字色等，然后在组件的样式中import进来：</p>
+<pre><code class="language-pug">   h1 hello world !
+   img(src=&quot;./assets/helloworld.png&quot;)
+</code></pre>
+<p> 另外我们在 <code>src</code> 目录下新建一个 <code>var.less</code> 来定义一些less的全局变量，如主背景色，主文字色等，然后在组件的样式中import进来：</p>
 <pre><code class="language-css">   /* src/var.less */
    @mainBgColor: #000;
    @mainTextColor: #fff;

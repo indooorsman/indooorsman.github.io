@@ -95,10 +95,10 @@ module.exports = {
 
     pug模板中还是一个简单的hello world标题，只不过增加一张图片：
       
-        ```pug
-        h1 hello world !
-        img(src="./assets/helloworld.png")
-        ```
+      ```pug
+      h1 hello world !
+      img(src="./assets/helloworld.png")
+      ```
   
     另外我们在 `src` 目录下新建一个 `var.less` 来定义一些less的全局变量，如主背景色，主文字色等，然后在组件的样式中import进来：
       
