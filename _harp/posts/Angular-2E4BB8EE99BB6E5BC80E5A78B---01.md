@@ -1,6 +1,6 @@
 <h1>Angular 2从零开始 - 01.模板引擎和样式预处理器<sub>2017-03-15</sub></h1>
 
-在上篇[Angular 2从零开始 - 00.概述&HelloWorld](./Angular-2E4BB8EE99BB6E5BC80E5A78BE7B3BBE58897---00)中我们已经实现了一个简单的HelloWorld页面，现在我们来继续丰富一下页面和样式，并引入模板引擎[pug](https://pugjs.org)和CSS预处理器[less](http://lesscss.org/)
+> 在上篇[Angular 2从零开始 - 00.概述&HelloWorld](./Angular-2E4BB8EE99BB6E5BC80E5A78BE7B3BBE58897---00)中我们已经实现了一个简单的HelloWorld页面，现在我们来继续丰富一下页面和样式，并引入模板引擎[pug](https://pugjs.org)和CSS预处理器[less](http://lesscss.org/)
 
 ## 安装相关依赖
 

@@ -100,5 +100,11 @@
 		"date": "2017-03-15",
 		"keywords": "angular,angular2,webpack,pug,less,aot,hmr,ssr,server sider rendering",
 		"id": 18
+	},
+	"Angular-22BE4BB8EE99BB6E5BC80E5A78B---02.live-reloading-26-webpack-dev-server": {
+		"title": "Angular从零开始 - 02.live reloading & webpack dev server",
+		"date": "2017-04-28",
+		"keywords": "live-reloading,dev-server,angular2,angular4",
+		"id": 19
 	}
 }
