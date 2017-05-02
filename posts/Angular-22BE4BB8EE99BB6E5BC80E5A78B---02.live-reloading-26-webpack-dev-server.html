@@ -41,8 +41,7 @@
 </li>
 </ol>
 <p>接下来把两种方案都实现一下</p>
-<h2>watch mode + live reload plugin</h2><h4>安装依赖</h4><pre><code class="language-bash">npm install --save-dev webpack-livereload-plugin
-npm install --save-dev concurrently
+<h2>watch mode + live reload plugin</h2><h4>安装依赖</h4><pre><code class="language-bash">npm install --save-dev webpack-livereload-plugin concurrently
 </code></pre>
 <p>其中<code>concurrently</code>的作用是并行执行命令，具体请参考<a href="https://github.com/kimmobrunfeldt/concurrently">https://github.com/kimmobrunfeldt/concurrently</a></p>
 <h4>修改<code>webpack.config.js</code></h4><p><img src="../assets/screenshot5.png" alt="webpack.config.js"></p>
@@ -60,7 +59,7 @@ npm install --save-dev concurrently
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
     ...
-    &quot;start&quot;: &quot;npm run install &amp;&amp; concurrently \&quot;npm run webpack:watch\&quot; \&quot;npm run server\&quot;&quot;
+    &quot;start&quot;: &quot;npm run init &amp;&amp; concurrently \&quot;npm run webpack:watch\&quot; \&quot;npm run server\&quot;&quot;
     ...
   }
 }
@@ -70,10 +69,41 @@ npm install --save-dev concurrently
 <p>现在我们修改代码后webpack就会自动编译并自动刷新浏览器页面了：</p>
 <p><img src="../assets/live-reload.gif" alt="live reload"></p>
 <h4>watch mode + live reload plugin示例源码</h4><p><a href="https://github.com/indooorsman/angular-twitter/tree/live-reload">https://github.com/indooorsman/angular-twitter/tree/live-reload</a></p>
-<h2>dev server</h2><pre><code class="language-js">//TODO
+<h2>dev server</h2><h4>安装依赖</h4><pre><code class="language-bash">npm install --save-dev webpack-dev-server html-webpack-plugin
 </code></pre>
+<p>之前我们的<code>index.html</code>是手动复制到<code>dist</code>目录的，但<code>dev-server</code>并不知道，所以除了<code>webpack-dev-server</code>之外，还需要安装<code>html-webpack-plugin</code>，它的作用是根据指定的html模板，自动生成<code>index.html</code>，并自动插入webpack打包生成的js文件路径，具体请参考<a href="https://github.com/jantimon/html-webpack-plugin">https://github.com/jantimon/html-webpack-plugin</a></p>
+<h4>修改<code>webpack.config.js</code></h4><p><img src="../assets/screenshot7.png" alt="webpack.config.js"></p>
+<p>dev-server配置文档：<a href="https://webpack.js.org/configuration/dev-server/">https://webpack.js.org/configuration/dev-server/</a></p>
+<h4>修改<code>src/index.html</code>：</h4><p>删除引入<code>app.bundle.js</code>的代码</p>
+<p><img src="../assets/screenshot8.png" alt="index.html"></p>
+<h4>修改<code>package.json</code>中的启动脚本</h4><ol>
+<li><p>增加<code>dev-server</code>脚本：</p>
+<pre><code class="language-json"> &quot;scripts&quot;: {
+    ...
+    &quot;dev-server&quot;: &quot;webpack-dev-server --config ./webpack.config.js --progress --open&quot;
+    ...
+ }
+</code></pre>
+<p> 其中<code>--open</code>参数会在服务启动之后自动打开一个浏览器窗口</p>
+</li>
+<li><p>修改<code>start</code>脚本：</p>
+<pre><code class="language-json"> &quot;scripts&quot;: {
+    ...
+    &quot;start&quot;: &quot;npm run init &amp;&amp; npm run dev-server&quot;
+    ...
+ }
+</code></pre>
+</li>
+</ol>
+<h4>启动</h4><pre><code class="language-bash">npm start
+</code></pre>
+<p><img src="../assets/dev-server.gif" alt="dev server"></p>
+<h4>dev-server示例源码</h4><p><a href="https://github.com/indooorsman/angular-twitter/tree/dev-server">https://github.com/indooorsman/angular-twitter/tree/dev-server</a>    </p>
+<blockquote>
+<p>下一篇教程中我们将会实现<a href="https://webpack.js.org/concepts/hot-module-replacement/">Hot Module Replacement</a></p>
+</blockquote>
 <p><br></p>
-<p><strong><em>未完待续</em></strong></p>
+<p><strong><em>EOF</em></strong></p>
 <p><br></p>
       <h4>分享</h4>
       <div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div>
