@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angular从零开始 - 02. live reloading & webpack dev server</title>
+    <title>indooorsman</title>
     <meta name="description" content="indooorsman's blog - csser.me">
     <meta name="keywords" content="indooorsman,blog,csser.me,angular,angularjs,nodejs,node,前端">
     <link rel="stylesheet" href="/main.css">
@@ -26,85 +26,7 @@
   </head>
   <body>
     <div id="container" class="markdown-body">
-      <div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div><h1>Angular从零开始 - 02.live reloading &amp; webpack dev server<sub>2017-04-28</sub></h1>
-
-<blockquote>
-<p>接上篇<a href="Angular-2E4BB8EE99BB6E5BC80E5A78B---01">Angular 2从零开始 - 01.模板引擎和样式预处理器</a>。Angular目前已经升级到4.x，之后的教程中统一使用<code>Angular</code>，而不是<code>Angular2</code>。如果你之前已经下载过<a href="https://github.com/indooorsman/angular-twitter">示例源码</a>，请更新代码，并重新执行<code>npm install</code>，这会将<code>Angular</code>升级到4.x</p>
-</blockquote>
-<p>要实现修改代码后自动重新编译并自动刷新页面，有两种方案：</p>
-<ol>
-<li><p><a href="https://webpack.js.org/guides/development/#webpack-watch-mode">webpack watch mode</a> + <a href="https://github.com/statianzo/webpack-livereload-plugin">live reload plugin</a></p>
-<p> 该方案依然会在dist目录中生成编译后的代码文件，对于没有使用或不想使用本地开发服务器的同学来说可能更方便一些</p>
-</li>
-<li><p><a href="https://webpack.js.org/guides/development/#webpack-dev-server">webpack dev server</a></p>
-<p> 该方案编译生成的文件在内存中的虚拟文件系统，而不是写入硬盘中的文件，因此编译速度要更快，而且可以实现<a href="https://webpack.js.org/concepts/hot-module-replacement/">Hot Module Replacement</a>，简称HMR，HMR比live reload更高效，它可以做到只更新某一个组件，并保留之前的状态，无需刷新页面。因此更推荐这种方式。</p>
-</li>
-</ol>
-<p>接下来把两种方案都实现一下</p>
-<h2>watch mode + live reload plugin</h2><h4>安装依赖</h4><pre><code class="language-bash">npm install --save-dev webpack-livereload-plugin concurrently
-</code></pre>
-<p>其中<code>concurrently</code>的作用是并行执行命令，具体请参考<a href="https://github.com/kimmobrunfeldt/concurrently">https://github.com/kimmobrunfeldt/concurrently</a></p>
-<h4>修改<code>webpack.config.js</code></h4><p><img src="../assets/screenshot5.png" alt="webpack.config.js"></p>
-<p>更多的配置请参考<a href="https://github.com/statianzo/webpack-livereload-plugin">https://github.com/statianzo/webpack-livereload-plugin</a></p>
-<h4>修改<code>package.json</code>中的启动脚本</h4><p>先增加一个脚本启动webpack的watch mode，增加一个参数<code>--watch</code>即可：</p>
-<pre><code class="language-json">{
-  &quot;scripts&quot;: {
-    ...
-    &quot;webpack:watch&quot;: &quot;webpack --config ./webpack.config.js --bail --progress --watch&quot;
-    ...
-  }
-}
-</code></pre>
-<p>然后修改start脚本：</p>
-<pre><code class="language-json">{
-  &quot;scripts&quot;: {
-    ...
-    &quot;start&quot;: &quot;npm run init &amp;&amp; concurrently \&quot;npm run webpack:watch\&quot; \&quot;npm run server\&quot;&quot;
-    ...
-  }
-}
-</code></pre>
-<h4>启动</h4><pre><code class="language-bash">npm start
-</code></pre>
-<p>现在我们修改代码后webpack就会自动编译并自动刷新浏览器页面了：</p>
-<p><img src="../assets/live-reload.gif" alt="live reload"></p>
-<h4>watch mode + live reload plugin示例源码</h4><p><a href="https://github.com/indooorsman/angular-twitter/tree/live-reload">https://github.com/indooorsman/angular-twitter/tree/live-reload</a></p>
-<h2>dev server</h2><h4>安装依赖</h4><pre><code class="language-bash">npm install --save-dev webpack-dev-server html-webpack-plugin
-</code></pre>
-<p>之前我们的<code>index.html</code>是手动复制到<code>dist</code>目录的，但<code>dev-server</code>并不知道，所以除了<code>webpack-dev-server</code>之外，还需要安装<code>html-webpack-plugin</code>，它的作用是根据指定的html模板，自动生成<code>index.html</code>，并自动插入webpack打包生成的js文件路径，具体请参考<a href="https://github.com/jantimon/html-webpack-plugin">https://github.com/jantimon/html-webpack-plugin</a></p>
-<h4>修改<code>webpack.config.js</code></h4><p><img src="../assets/screenshot7.png" alt="webpack.config.js"></p>
-<p>dev-server配置文档：<a href="https://webpack.js.org/configuration/dev-server/">https://webpack.js.org/configuration/dev-server/</a></p>
-<h4>修改<code>src/index.html</code>：</h4><p>删除引入<code>app.bundle.js</code>的代码</p>
-<p><img src="../assets/screenshot8.png" alt="index.html"></p>
-<h4>修改<code>package.json</code>中的启动脚本</h4><ol>
-<li><p>增加<code>dev-server</code>脚本：</p>
-<pre><code class="language-json"> &quot;scripts&quot;: {
-    ...
-    &quot;dev-server&quot;: &quot;webpack-dev-server --config ./webpack.config.js --progress --open&quot;
-    ...
- }
-</code></pre>
-<p> 其中<code>--open</code>参数会在服务启动之后自动打开一个浏览器窗口</p>
-</li>
-<li><p>修改<code>start</code>脚本：</p>
-<pre><code class="language-json"> &quot;scripts&quot;: {
-    ...
-    &quot;start&quot;: &quot;npm run init &amp;&amp; npm run dev-server&quot;
-    ...
- }
-</code></pre>
-</li>
-</ol>
-<h4>启动</h4><pre><code class="language-bash">npm start
-</code></pre>
-<p><img src="../assets/dev-server.gif" alt="dev server"></p>
-<h4>dev-server示例源码</h4><p><a href="https://github.com/indooorsman/angular-twitter/tree/dev-server">https://github.com/indooorsman/angular-twitter/tree/dev-server</a>    </p>
-<blockquote>
-<p>下一篇教程中我们将会实现<a href="https://webpack.js.org/concepts/hot-module-replacement/">Hot Module Replacement</a></p>
-</blockquote>
-<p><br></p>
-<p><strong><em>EOF</em></strong></p>
-<p><br></p>
+      <div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div>
       <h4>分享</h4>
       <div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div>
       <script>
