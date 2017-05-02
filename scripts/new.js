@@ -49,7 +49,7 @@ tasks.push(function (cb) {
 });
 
 async.series(tasks, function () {
-  var fileName = encodeURIComponent(title.replace(/\s+/g,'-')).replace(/%/g, '');
+  var fileName = encodeURIComponent(title.replace(/(\s+|&|\.)/g,'-')).replace(/%/g, '');
   var insertStr = '<h1>' + title + '<sub>' + date + '</sub></h1>';
   var fp = path.join(__dirname, '../_harp/posts/', fileName + '.md');
   console.log(fp);
