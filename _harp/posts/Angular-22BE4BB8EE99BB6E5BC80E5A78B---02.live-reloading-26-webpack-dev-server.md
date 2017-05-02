@@ -19,8 +19,7 @@
 #### 安装依赖
 
 ```bash
-npm install --save-dev webpack-livereload-plugin
-npm install --save-dev concurrently
+npm install --save-dev webpack-livereload-plugin concurrently
 ```
 
 其中`concurrently`的作用是并行执行命令，具体请参考<https://github.com/kimmobrunfeldt/concurrently>
@@ -51,7 +50,7 @@ npm install --save-dev concurrently
 {
   "scripts": {
     ...
-    "start": "npm run install && concurrently \"npm run webpack:watch\" \"npm run server\""
+    "start": "npm run init && concurrently \"npm run webpack:watch\" \"npm run server\""
     ...
   }
 }
@@ -73,12 +72,66 @@ npm start
   
 ## dev server  
 
-```js
-//TODO
+#### 安装依赖
+
+```bash
+npm install --save-dev webpack-dev-server html-webpack-plugin
 ```
+
+之前我们的`index.html`是手动复制到`dist`目录的，但`dev-server`并不知道，所以除了`webpack-dev-server`之外，还需要安装`html-webpack-plugin`，它的作用是根据指定的html模板，自动生成`index.html`，并自动插入webpack打包生成的js文件路径，具体请参考<https://github.com/jantimon/html-webpack-plugin>
+
+#### 修改`webpack.config.js`
+
+![webpack.config.js](../assets/screenshot7.png)
+
+dev-server配置文档：<https://webpack.js.org/configuration/dev-server/>
+
+#### 修改`src/index.html`：
+
+删除引入`app.bundle.js`的代码
+
+![index.html](../assets/screenshot8.png)
+
+#### 修改`package.json`中的启动脚本
+
+1. 增加`dev-server`脚本：
+
+    ```json
+    "scripts": {
+       ...
+       "dev-server": "webpack-dev-server --config ./webpack.config.js --progress --open"
+       ...
+    }
+    ```
+    
+    其中`--open`参数会在服务启动之后自动打开一个浏览器窗口
+    
+1. 修改`start`脚本：
+    
+    ```json
+    "scripts": {
+       ...
+       "start": "npm run init && npm run dev-server"
+       ...
+    }
+    ```
+    
+#### 启动
+    
+```bash
+npm start
+```
+
+![dev server](../assets/dev-server.gif)
+
+#### dev-server示例源码
+
+<https://github.com/indooorsman/angular-twitter/tree/dev-server>    
+
+> 下一篇教程中我们将会实现[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)
 
 <br/>
     
-___未完待续___
+___EOF___
 
 <br/>
