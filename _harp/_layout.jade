@@ -14,10 +14,12 @@ html
       .markdown-body ul {
         padding-left: 0;
       }
+
       .markdown-body ul li {
         margin-bottom: 0;
         padding: 5px;
       }
+
       .markdown-body ul li:nth-child(odd) {
         background-color: #f2f2f2;
       }
@@ -43,28 +45,33 @@ html
       != yield
       #comments
         h4 留言
-        div.ds-thread(data-thread-key="blog_home"
-        data-title="#{title}"
-        data-url="#{host}")
+        #disqus_thread
         script.
-          var duoshuoQuery = {short_name: 'csser'};
-          (function(){
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
-            ds.src = 'http://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            document.head.appendChild(ds);
+          /**
+           *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+           *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+          var disqus_config = function () {
+            this.page.url = location.href;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = encodeURIComponent(location.pathname); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+
+          (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://csser-1.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
           })();
 
-    footer
-      p.copyright indooorsman &copy;&nbsp;
-        a(href='http://csser.me') csser.me
+footer
+  p.copyright indooorsman &copy;&nbsp;
+    a(href='http://csser.me') csser.me
 
-    //-script(src='/assets/js/CryptoJS.js')
-    //-script(src='/assets/js/rl-comments.js')
-    //-script.
-      (function () {
-        var id = CryptoJS.SHA1(location.host + location.pathname.replace(/\/$/,''), 'rlcmt');
-        var container = document.getElementById('comments');
-        RLComments.init(id, container);
-      })();
+//-script(src='/assets/js/CryptoJS.js')
+//-script(src='/assets/js/rl-comments.js')
+//-script.
+  (function () {
+    var id = CryptoJS.SHA1(location.host + location.pathname.replace(/\/$/,''), 'rlcmt');
+    var container = document.getElementById('comments');
+    RLComments.init(id, container);
+  })();
