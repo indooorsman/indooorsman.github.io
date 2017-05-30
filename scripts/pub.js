@@ -18,7 +18,7 @@ const path = require('path');
 const src = path.resolve(__dirname, '../_harp');
 const tempWWW = path.resolve(src, './www/');
 const root = path.resolve(__dirname, '../');
-const charp = require('charp');
+const charp = require('harp');
 
 console.log('compiling...');
 charp.compile(src, tempWWW, (e, config) => {
