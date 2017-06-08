@@ -106,5 +106,11 @@
 		"date": "2017-05-02",
 		"keywords": "angular,angular2,angular4,live-reload,dev-server,webpack",
 		"id": 20
+	},
+	"AngularE4BB8EE99BB6E5BC80E5A78B---03--hot-module-replacement": {
+		"title": "Angular从零开始 - 03. hot module replacement",
+		"date": "2017-06-09",
+		"keywords": "angular,angular2,angular4,hmr,hot module replacement,webpack",
+		"id": 21
 	}
 }
