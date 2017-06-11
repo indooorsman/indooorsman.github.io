@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Angular从零开始 - 03. hot module replacement</title><meta name="description" content="indooorsman's blog - csser.me"><meta name="keywords" content="angular,angular2,angular4,hmr,hot module replacement,webpack"><link rel="stylesheet" href="/main.css"><link rel="shortcut icon" type="image/png" href="/48.png"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.configure({languages: ['javascript']});
+hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?2bdbd2417ecf82c495cfefb39957b9ce";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></head><body><div id="container" class="markdown-body"><div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div><h1>Angular从零开始 - 03. hot module replacement<sub>2017-06-09</sub></h1>
+
+<blockquote>
+<p>接上篇 <a href="./AngularE4BB8EE99BB6E5BC80E5A78B---02--live-reloading---webpack-dev-server">Angular从零开始 - 02. live reloading &amp; webpack dev server</a></p>
+</blockquote>
+<h2>什么是HMR</h2><p>webpack官方有非常详细的解释：<a href="https://doc.webpack-china.org/concepts/hot-module-replacement/">https://doc.webpack-china.org/concepts/hot-module-replacement/</a></p>
+<blockquote>
+<p>模块热替换功能会在应用程序运行过程中替换、添加或删除模块，而无需重新加载页面。这使得你可以在独立模块变更后，无需刷新整个页面，就可以更新这些模块，极大地加速了开发时间。</p>
+</blockquote>
+<p>简单说就是修改代码之后不需要刷新整个页面就能看到效果。</p>
+<h2>启用HMR</h2><p>先来看一下最终的效果：</p>
+<p><img src="../assets/hmr.gif" alt="hmr"></p>
+<p>从控制台没有先清空可以看出我们在修改了模板文件之后，并不是整个页面reload，而是重新加载了相关的模块，控制台也会输出具体重载了哪些模块</p>
+<p>在使用<a href="./AngularE4BB8EE99BB6E5BC80E5A78B---02--live-reloading---webpack-dev-server">webpack-dev-server</a>的情况下，开启HMR非常的简单：</p>
+<ol>
+<li><p>在启动 <code>webpack-dev-server</code> 时添加参数 <code>--hot</code></p>
+<p> <img src="../assets/screenshot10.png" alt="--hot"></p>
+</li>
+<li>在应用入口文件，也就是 <code>./src/main.ts</code> 中添加如下代码：<pre><code class="language-javascript"> if (module &amp;&amp; module[&#39;hot&#39;]) {
+   module[&#39;hot&#39;].accept();
+ }
+</code></pre>
+</li>
+<li><p>如果只有前面2步的话，其实已经可以了，只不过控制台输出的重载的模块信息显示的是模块id，而看不出模块对应的是哪个文件。所以如果你需要关心具体对应的文件的话，在webpack的配置中添加 <code>NamedModulesPlugin</code> 即可：   </p>
+<p> <img src="../assets/screenshot9.png" alt="NamedModulesPlugin"></p>
+</li>
+<li><p>然后启动开发服务就完成啦</p>
+<pre><code class="language-bash"> npm start
+</code></pre>
+</li>
+</ol>
+<h2>本阶段源码</h2><p><a href="https://github.com/indooorsman/angular-twitter/tree/hmr">https://github.com/indooorsman/angular-twitter/tree/hmr</a></p>
+<blockquote>
+<p>下一篇教程中我们将会实现<a href="https://angular.cn/docs/ts/latest/cookbook/aot-compiler.html">AOT(Ahead-of-time )编译</a></p>
+</blockquote>
+<p><br></p>
+<p><strong><em>EOF</em></strong></p>
+<p><br>    </p><h4>分享</h4><div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script><div id="comments"><h4>评论</h4><div id="disqus_thread"></div><script>/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+  this.page.url = location.href;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = encodeURIComponent(location.pathname); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function () { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://csser-1.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script></div></div><footer><p class="copyright">indooorsman &copy;&nbsp;<a href="http://csser.me">csser.me</a></p></footer></body></html>
