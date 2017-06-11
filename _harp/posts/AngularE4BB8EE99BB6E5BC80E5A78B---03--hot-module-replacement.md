@@ -10,6 +10,8 @@ webpack官方有非常详细的解释：<https://doc.webpack-china.org/concepts/
 
 简单说就是修改代码之后不需要刷新整个页面就能看到效果。
 
+## 启用HMR
+
 先来看一下最终的效果：
 
 ![hmr](../assets/hmr.gif)
@@ -19,15 +21,31 @@ webpack官方有非常详细的解释：<https://doc.webpack-china.org/concepts/
 在使用[webpack-dev-server](./AngularE4BB8EE99BB6E5BC80E5A78B---02--live-reloading---webpack-dev-server)的情况下，开启HMR非常的简单：
 
 1. 在启动 `webpack-dev-server` 时添加参数 `--hot`
+    
+    ![--hot](../assets/screenshot10.png)
 1. 在应用入口文件，也就是 `./src/main.ts` 中添加如下代码：
     ```javascript
     if (module && module['hot']) {
       module['hot'].accept();
     }
     ```
-1. 如果只有前面2部的话，其实已经可以了，只不过控制台输出的重载的模块信息显示的是模块id，而看不出模块对应的是哪个文件。所以如果你需要关心具体对应的文件的话，在webpack的配置中添加 `NamedModulesPlugin` 即可：   
+1. 如果只有前面2步的话，其实已经可以了，只不过控制台输出的重载的模块信息显示的是模块id，而看不出模块对应的是哪个文件。所以如果你需要关心具体对应的文件的话，在webpack的配置中添加 `NamedModulesPlugin` 即可：   
 
-- main.ts添加hmr相关代码
-- webpack.config添加devtool字段
-- package.json中的启动脚本添加--hot参数
-- webpack.NamedModulesPlugin
+    ![NamedModulesPlugin](../assets/screenshot9.png)
+1. 然后启动开发服务就完成啦
+  
+    ```bash
+    npm start
+    ```
+    
+## 本阶段源码
+    
+<https://github.com/indooorsman/angular-twitter/tree/hmr>
+    
+> 下一篇教程中我们将会实现[AOT(Ahead-of-time )编译](https://angular.cn/docs/ts/latest/cookbook/aot-compiler.html)
+
+<br/>
+    
+___EOF___
+
+<br/>    
