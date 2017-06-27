@@ -112,5 +112,11 @@
 		"date": "2017-06-09",
 		"keywords": "angular,angular2,angular4,hmr,hot module replacement,webpack",
 		"id": 21
+	},
+	"AngularE4BB8EE99BB6E5BC80E5A78B---04--AoTE9A284E7BC96E8AF91": {
+		"title": "Angular从零开始 - 04. AoT预编译",
+		"date": "2017-06-27",
+		"keywords": "aot,angular",
+		"id": 22
 	}
 }
