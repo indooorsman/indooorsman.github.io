@@ -24,6 +24,7 @@ webpack官方有非常详细的解释：<https://doc.webpack-china.org/concepts/
     
     ![--hot](../assets/screenshot10.png)
 1. 在应用入口文件，也就是 `./src/main.ts` 中添加如下代码：
+    
     ```javascript
     if (module && module['hot']) {
       module['hot'].accept();
