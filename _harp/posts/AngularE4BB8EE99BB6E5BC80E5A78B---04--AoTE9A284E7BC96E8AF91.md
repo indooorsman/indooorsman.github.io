@@ -1,4 +1,4 @@
-<h1>Angular从零开始 - 04. AoT预编译和生成环境配置<sub>2017-06-27</sub></h1>
+<h1>Angular从零开始 - 04. AoT预编译和生产环境配置<sub>2017-06-27</sub></h1>
 
 > 接上篇 [Angular从零开始 - 03. hot module replacement](./AngularE4BB8EE99BB6E5BC80E5A78B---03--hot-module-replacement)
 
@@ -27,7 +27,7 @@
 
   由于AOT编译过程可能会相对耗时，我们在开发环境和生产环境需要做不同的配置，因此首先我们新建一个AOT的webpack配置
   1. 复制`./webpack.config.js`为`./webpack.aot.config.js`
-  1. 修改 `./webpack.aot.config.js`，除了AOT之外，我们也做一些其他针对生成环境的配置，主要包含这几个方面：
+  1. 修改 `./webpack.aot.config.js`，除了AOT之外，我们也做一些其他针对生产环境的配置，主要包含这几个方面：
       1. 文件名中添加hash，避免缓存。那么为什么不是`a.js?hash=xxx`这种形式呢？这跟CDN缓存有关系，假如将来我们需要把静态文件部署CDN，那么`a.js?hash=xxx`这种形式并不能触发CDN重新请求该文件，即使xxx修改了，用户仍然访问不到最新的a.js。可以参考这篇文章：<http://www.infoq.com/cn/articles/front-end-engineering-and-performance-optimization-part1>
       1. `ts`文件使用`@ngtools/webpack`编译，`plugins`中添加`AotPlugin`
       1. 在`./src/main.ts`中调用Angular的`enableProdMode`方法
@@ -136,7 +136,7 @@
         plugins: [
           new CleanPlugin([dist]), // 编译前删除dist目录
           new DefinePlugin({
-            // 创建一个编译时可用的全局常量`ENV`，让我们可以在代码中区分当前环境，比如在生成环境中调用Angular的`enableProdMode`方法，
+            // 创建一个编译时可用的全局常量`ENV`，让我们可以在代码中区分当前环境，比如在生产环境中调用Angular的`enableProdMode`方法，
             // 参考 ./src/main.ts 第8 - 12行
             // 这里必须用JSON.stringify或者'"prod"'，因为这个插件是直接替换字符串
             // 参考 https://doc.webpack-china.org/plugins/define-plugin/
@@ -182,7 +182,7 @@
         }*/
       };
       ```
-  1. `package.json`中添加生成环境的构建脚本
+  1. `package.json`中添加生产环境的构建脚本
   
       ```json
       {
@@ -212,7 +212,7 @@ npm run server
 
 ![server-dist](../assets/server-dist.png) 
      
-OK! 然后我们就可以部署到生成环境中了，部署过程等我们的demo更完善一些的时候再写
+OK! 然后我们就可以部署到生产环境中了，部署过程等我们的demo更完善一些的时候再写
 
 ## 本阶段源码
 

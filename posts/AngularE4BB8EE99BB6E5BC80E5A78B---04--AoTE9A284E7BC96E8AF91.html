@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Angular从零开始 - 04. AoT预编译和生成环境配置</title><meta name="description" content="indooorsman's blog - csser.me"><meta name="keywords" content="aot,angular"><link rel="stylesheet" href="/main.css"><link rel="shortcut icon" type="image/png" href="/48.png"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.configure({languages: ['javascript']});
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Angular从零开始 - 04. AoT预编译和生产环境配置</title><meta name="description" content="indooorsman's blog - csser.me"><meta name="keywords" content="aot,angular"><link rel="stylesheet" href="/main.css"><link rel="shortcut icon" type="image/png" href="/48.png"><script src="/themes/highlight/highlight.pack.js" type="text/javascript"></script><script type="text/javascript">hljs.configure({languages: ['javascript']});
 hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
 (function () {
   var hm = document.createElement("script");
@@ -6,7 +6,7 @@ hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
-</script></head><body><div id="container" class="markdown-body"><div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div><h1>Angular从零开始 - 04. AoT预编译和生成环境配置<sub>2017-06-27</sub></h1>
+</script></head><body><div id="container" class="markdown-body"><div class="nav-breads"><a href="http://csser.me">首页</a><span class="split">/</span><a href="http://blog.csser.me">博客</a><span class="split">/</span></div><h1>Angular从零开始 - 04. AoT预编译和生产环境配置<sub>2017-06-27</sub></h1>
 
 <blockquote>
 <p>接上篇 <a href="./AngularE4BB8EE99BB6E5BC80E5A78B---03--hot-module-replacement">Angular从零开始 - 03. hot module replacement</a></p>
@@ -30,7 +30,7 @@ npm update
 <p>由于AOT编译过程可能会相对耗时，我们在开发环境和生产环境需要做不同的配置，因此首先我们新建一个AOT的webpack配置</p>
 <ol>
 <li>复制<code>./webpack.config.js</code>为<code>./webpack.aot.config.js</code></li>
-<li><p>修改 <code>./webpack.aot.config.js</code>，除了AOT之外，我们也做一些其他针对生成环境的配置，主要包含这几个方面：</p>
+<li><p>修改 <code>./webpack.aot.config.js</code>，除了AOT之外，我们也做一些其他针对生产环境的配置，主要包含这几个方面：</p>
 <ol>
 <li>文件名中添加hash，避免缓存。那么为什么不是<code>a.js?hash=xxx</code>这种形式呢？这跟CDN缓存有关系，假如将来我们需要把静态文件部署CDN，那么<code>a.js?hash=xxx</code>这种形式并不能触发CDN重新请求该文件，即使xxx修改了，用户仍然访问不到最新的a.js。可以参考这篇文章：<a href="http://www.infoq.com/cn/articles/front-end-engineering-and-performance-optimization-part1">http://www.infoq.com/cn/articles/front-end-engineering-and-performance-optimization-part1</a></li>
 <li><code>ts</code>文件使用<code>@ngtools/webpack</code>编译，<code>plugins</code>中添加<code>AotPlugin</code></li>
@@ -138,7 +138,7 @@ module.exports = {
   plugins: [
     new CleanPlugin([dist]), // 编译前删除dist目录
     new DefinePlugin({
-      // 创建一个编译时可用的全局常量`ENV`，让我们可以在代码中区分当前环境，比如在生成环境中调用Angular的`enableProdMode`方法，
+      // 创建一个编译时可用的全局常量`ENV`，让我们可以在代码中区分当前环境，比如在生产环境中调用Angular的`enableProdMode`方法，
       // 参考 ./src/main.ts 第8 - 12行
       // 这里必须用JSON.stringify或者&#39;&quot;prod&quot;&#39;，因为这个插件是直接替换字符串
       // 参考 https://doc.webpack-china.org/plugins/define-plugin/
@@ -185,7 +185,7 @@ module.exports = {
 };
 </code></pre>
 </li>
-<li><p><code>package.json</code>中添加生成环境的构建脚本</p>
+<li><p><code>package.json</code>中添加生产环境的构建脚本</p>
 <pre><code class="language-json">{
   &quot;scripts&quot;: {
     &quot;build:aot&quot;: &quot;webpack -p --config ./webpack.aot.config.js --bail --progress&quot;
@@ -205,7 +205,7 @@ module.exports = {
 <pre><code class="language-bash">npm run server
 </code></pre>
 <p><img src="../assets/server-dist.png" alt="server-dist"> </p>
-<p>OK! 然后我们就可以部署到生成环境中了，部署过程等我们的demo更完善一些的时候再写</p>
+<p>OK! 然后我们就可以部署到生产环境中了，部署过程等我们的demo更完善一些的时候再写</p>
 <h2>本阶段源码</h2><p><a href="https://github.com/indooorsman/angular-twitter/tree/prod">https://github.com/indooorsman/angular-twitter/tree/prod</a></p>
 <blockquote>
 <p>现在开发构建环境已经基本完成，接下来就开始我们具体的业务编码了，下一篇就先完成登录页吧 :)</p>
