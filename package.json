@@ -5,10 +5,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "node ./scripts/pub.js",
-    "start": "cd ./_harp && charp server",
-    "new": "cd ./scripts && node new.js && cd ../_harp && charp server",
-    "list": "cd ./scripts && node list.js",
-    "rm": "cd ./scripts && node rm.js"
+    "start": "charp server ./_harp",
+    "new": "node ./scripts/new.js && npm start",
+    "list": "node ./scripts/list.js",
+    "rm": "node ./scripts/rm.js"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,10 @@
   "license": "ISC",
   "homepage": "https://github.com/indooorsman/indooorsman.github.io#readme",
   "dependencies": {
-    "async": "^1.4.2",
+    "async": "^1.5.2",
     "charp": "git+https://github.com/indooorsman/harp.git",
-    "commander": "^2.8.1",
-    "shelljs": "^0.7.6"
+    "commander": "^2.11.0",
+    "shelljs": "^0.7.8"
   },
   "devDependencies": {}
 }
