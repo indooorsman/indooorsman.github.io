@@ -24,7 +24,8 @@ hljs.initHighlightingOnLoad();</script><script>var _hmt = _hmt || [];
 <li><p>在启动 <code>webpack-dev-server</code> 时添加参数 <code>--hot</code></p>
 <p> <img src="../assets/screenshot10.png" alt="--hot"></p>
 </li>
-<li>在应用入口文件，也就是 <code>./src/main.ts</code> 中添加如下代码：<pre><code class="language-javascript"> if (module &amp;&amp; module[&#39;hot&#39;]) {
+<li><p>在应用入口文件，也就是 <code>./src/main.ts</code> 中添加如下代码：</p>
+<pre><code class="language-javascript"> if (module &amp;&amp; module[&#39;hot&#39;]) {
    module[&#39;hot&#39;].accept();
  }
 </code></pre>

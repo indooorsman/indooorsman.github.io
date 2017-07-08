@@ -214,6 +214,10 @@ npm run server
      
 OK! 然后我们就可以部署到生成环境中了，部署过程等我们的demo更完善一些的时候再写
 
+## 本阶段源码
+
+<https://github.com/indooorsman/angular-twitter/tree/prod>
+
 > 现在开发构建环境已经基本完成，接下来就开始我们具体的业务编码了，下一篇就先完成登录页吧 :)
 
 <br/>
