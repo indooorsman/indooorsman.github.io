@@ -118,5 +118,11 @@
 		"date": "2017-06-27",
 		"keywords": "aot,angular",
 		"id": 22
+	},
+	"ES6E4B8ADclassE79A84prototypeE5BC95E794A8E4B88DE58FAFE4BFAEE694B9": {
+		"title": "ES6中class的prototype引用不可修改",
+		"date": "2017-07-27",
+		"keywords": "es6,class,prototype,function",
+		"id": 23
 	}
 }

@@ -213,7 +213,7 @@ module.exports = {
 <p><br></p>
 <p><strong><em>EOF</em></strong></p>
 <p><br></p><h4>分享</h4><div class="bdsharebuttonbox"><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tieba" title="分享到百度贴吧" class="bds_tieba"></a><a href="#" data-cmd="tqq" title="分享到腾讯微博" class="bds_tqq"></a><a href="#" data-cmd="renren" title="分享到人人网" class="bds_renren"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="copy" title="分享到复制网址" class="bds_copy"></a></div><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-</script><div id="comments"><h4>评论</h4><div id="disqus_thread"></div><script>/**
+</script><div id="comments"><h4>评论</h4><div id="disqus_thread"><p id="disqus_error" style="display:none;">无法加载评论...请自备梯子(for the GFW)...</p></div><script>/**
  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
@@ -223,7 +223,8 @@ var disqus_config = function () {
 };
 
 (function () { // DON'T EDIT BELOW THIS LINE
-  var d = document, s = d.createElement('script');
+  var d = document, s = d.createElement('script'),e = d.getElementById('disqus_error');
+  s.onerror = function() {e.style.display = 'block'};
   s.src = 'https://csser-1.disqus.com/embed.js';
   s.setAttribute('data-timestamp', +new Date());
   (d.head || d.body).appendChild(s);

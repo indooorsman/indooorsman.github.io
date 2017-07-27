@@ -45,7 +45,8 @@ html
       != yield
       #comments
         h4 留言
-        #disqus_thread
+        #disqus_thread 
+          p#disqus_error(style="display:none;") 无法加载留言...请自备梯子(for the GFW)...
         script.
           /**
            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -57,7 +58,8 @@ html
           };
 
           (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
+            var d = document, s = d.createElement('script'),e = d.getElementById('disqus_error');
+            s.onerror = function() {e.style.display = 'block'};
             s.src = 'https://csser-1.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
