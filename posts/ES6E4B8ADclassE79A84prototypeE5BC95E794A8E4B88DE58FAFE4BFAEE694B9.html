@@ -64,7 +64,7 @@ let prototypeDescriptor = Object.getOwnPropertyDescriptor(AnotherA, &#39;prototy
 console.log(prototypeDescriptor);
 // =&gt; {value: Object, writable: false, enumerable: false, configurable: false}
 </code></pre>
-<p>可以看到<code>class</code>声明的类的<code>prototype</code>的<code>writeable</code>是<code>false</code>，所以对其<code>prototype</code>再次赋值是无效的，当然可以通过<code>AnotherA.prototype.say = ...</code>对其成员进行修改</p>
+<p>可以看到<code>class</code>声明的类的<code>prototype</code>的<code>writable</code>是<code>false</code>，所以对其<code>prototype</code>再次赋值是无效的，当然可以通过<code>AnotherA.prototype.say = ...</code>对其成员进行修改</p>
 <p>经过查阅<code>ECMA2015</code>规范也证实了这一点：</p>
 <p><img src="../assets/es6-class-prototype1.jpeg" alt="es6-class-prototype1"></p>
 <p>上图是<code>ES6</code>中关于<code>class</code>的定义方案，在第16步中，调用<code>MakeConstructor</code>方法，注意第二个参数为<code>false</code>，然后再看下<code>MakeConstructor</code>这个方法：</p>

@@ -70,7 +70,7 @@ console.log(prototypeDescriptor);
 // => {value: Object, writable: false, enumerable: false, configurable: false}
 ```
 
-可以看到`class`声明的类的`prototype`的`writeable`是`false`，所以对其`prototype`再次赋值是无效的，当然可以通过`AnotherA.prototype.say = ...`对其成员进行修改
+可以看到`class`声明的类的`prototype`的`writable`是`false`，所以对其`prototype`再次赋值是无效的，当然可以通过`AnotherA.prototype.say = ...`对其成员进行修改
 
 经过查阅`ECMA2015`规范也证实了这一点：
 
