@@ -37,7 +37,7 @@ A1.prototype = {
 };
 var a1  = new A1();
 a1.say();
-// => i am b
+// => i am b1
 ```
 
 可见`ES6`中`class`的实现跟`function`相比在这一点上是截然不同的
