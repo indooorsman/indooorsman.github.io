@@ -1,4 +1,0 @@
-[submodule "redbook-spider"]
-	path = redbook-spider
-	url = https://github.com/indooorsman/redbook-spider.git
-	branch = gh-pages

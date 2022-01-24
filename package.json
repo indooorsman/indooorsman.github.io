@@ -1,32 +1,23 @@
 {
   "name": "indooorsman.github.io",
   "version": "2.0.0",
-  "description": "indooorsman's blog",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "node ./scripts/pub.js",
-    "start": "charp server ./_harp",
-    "new": "node ./scripts/new.js && npm start",
-    "list": "node ./scripts/list.js",
-    "rm": "node ./scripts/rm.js"
-  },
+  "description": "indooorsman",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/indooorsman/indooorsman.github.io.git"
   },
   "keywords": [
     "indooorsman",
-    "blog",
     "csser"
   ],
   "author": "indooorsman@gmail.com",
   "license": "ISC",
-  "homepage": "https://github.com/indooorsman/indooorsman.github.io#readme",
-  "dependencies": {
-    "async": "^1.5.2",
-    "charp": "git+https://github.com/indooorsman/harp.git",
-    "commander": "^2.11.0",
-    "shelljs": "^0.8.5"
+  "homepage": "https://csser.top/me",
+  "devDependencies": {
+    "serve": "^13.0.2"
   },
-  "devDependencies": {}
+  "scripts": {
+    "install": "npm_config_registry=https://registry.npmmirror.com npm install",
+    "dev": "serve ."
+  }
 }
