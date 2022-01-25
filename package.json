@@ -1,6 +1,6 @@
 {
   "name": "indooorsman.github.io",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "indooorsman",
   "repository": {
     "type": "git",
@@ -11,8 +11,8 @@
     "csser"
   ],
   "author": "indooorsman@gmail.com",
-  "license": "ISC",
-  "homepage": "https://csser.top/me",
+  "license": "MIT",
+  "homepage": "https://me.csser.top",
   "devDependencies": {
     "serve": "^13.0.2"
   },
